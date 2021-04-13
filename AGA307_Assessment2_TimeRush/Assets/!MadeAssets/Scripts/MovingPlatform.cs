@@ -31,9 +31,10 @@ public class MovingPlatform : MonoBehaviour
         if ((platformStops[nextStop].position - transform.position).magnitude < 0.1f )
         //if (transform.position == platformStops[nextStop].position)
         {
-
-            Invoke("FindNextStop", delay);
             isWaiting = true;
+            transform.position = platformStops[nextStop].position;
+            Invoke("FindNextStop", delay);
+            
         }
         else
         {
