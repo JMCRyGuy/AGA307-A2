@@ -22,7 +22,7 @@ public class MovingPlatform : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isWaiting)
             return;
@@ -45,6 +45,9 @@ public class MovingPlatform : MonoBehaviour
 
         
     }
+
+
+
 
     void MovePlatform()
     {
