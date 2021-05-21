@@ -66,7 +66,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c3f8883280a06488c072d84a1d68fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  veloc: {x: 0, y: 0, z: 0}
 --- !u!1 &247544064239948904
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,7 +76,7 @@ GameObject:
   m_Component:
   - component: {fileID: 247544064239948903}
   m_Layer: 0
-  m_Name: MovingPlatform_0
+  m_Name: MovingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

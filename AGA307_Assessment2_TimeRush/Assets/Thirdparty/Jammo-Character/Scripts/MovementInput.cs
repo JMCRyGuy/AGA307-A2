@@ -22,6 +22,9 @@ public class MovementInput : MonoBehaviour {
     public Camera cam;
     public CharacterController controller;
     public bool isGrounded;
+ //Added Varible
+    public bool jumpPadUse = false;
+    public float speedScale;
 
     [Header("Animation Smoothing")]
     [Range(0, 1f)]
@@ -52,11 +55,11 @@ public class MovementInput : MonoBehaviour {
         InputMagnitude();
 
         //isGrounded = controller.isGrounded;
-        isGrounded = Physics.CheckSphere(groundCheck.position, 0.05f, groundCheckLayerMask);
+        isGrounded = Physics.CheckSphere(groundCheck.position, 0.02f, groundCheckLayerMask);
 
 
 
-        if (isGrounded)
+        if (isGrounded && !jumpPadUse)
         {
             verticalVel = 0;
             
@@ -68,8 +71,8 @@ public class MovementInput : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump"))
         {
-            transform.SetParent(null);
-            Jump();
+            
+            Jump(40f);
         }
         moveVector = new Vector3(0, verticalVel * .5f * Time.deltaTime, 0);
 
@@ -99,7 +102,7 @@ public class MovementInput : MonoBehaviour {
 
         if (blockRotationPlayer == false) {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
-            controller.Move(desiredMoveDirection * Time.deltaTime * Velocity);
+            controller.Move(desiredMoveDirection * Time.deltaTime * Velocity * speedScale);
         }
     }
 
@@ -129,7 +132,7 @@ public class MovementInput : MonoBehaviour {
         //anim.SetFloat ("InputX", InputX, HorizontalAnimSmoothTime, Time.deltaTime * 2f);
 
         //Calculate the Input Magnitude
-        Speed = new Vector2(InputX, InputZ).sqrMagnitude;
+        Speed  = new Vector2(InputX, InputZ).sqrMagnitude;
 
         //Physically move player
 
@@ -142,18 +145,16 @@ public class MovementInput : MonoBehaviour {
     }
 
 
-    void Jump()
+    public void Jump(float x)
     {
         if(isGrounded)
         {
             transform.SetParent(null);
-            verticalVel = 40f;
+            verticalVel = x;
             
 
 
         }
-
-
     }
 
 
